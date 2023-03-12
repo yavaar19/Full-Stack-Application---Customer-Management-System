@@ -4,6 +4,7 @@ import com.yavaarnosi.exception.DeleteResourceNotFoundException;
 import com.yavaarnosi.exception.DuplicateResourceException;
 import com.yavaarnosi.exception.RequestValidationException;
 import com.yavaarnosi.exception.ResourceNotFoundException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class CustomerService {
 
     private final CustomerDAO customerDAO;
 
-    public CustomerService(CustomerDAO customerDAO){
+    public CustomerService(@Qualifier("jdbc") CustomerDAO customerDAO){
 
         this.customerDAO = customerDAO;
 
