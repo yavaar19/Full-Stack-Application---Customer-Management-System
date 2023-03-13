@@ -39,7 +39,7 @@ public class CustomerService {
 
         String email = customerRegistrationRequest.email();
 
-        if (customerDAO.existsPersonWithEmail(email)){
+        if (customerDAO.existsCustomerWithEmail(email)){
 
             throw new DuplicateResourceException("Email already exist!");
 
@@ -61,7 +61,7 @@ public class CustomerService {
 
     public void deleteCustomer(Integer id) {
 
-        if (customerDAO.existsPersonWithId(id)) {
+        if (customerDAO.existsCustomerWithId(id)) {
 
             customerDAO.deleteCustomerById(id);
 
@@ -95,7 +95,7 @@ public class CustomerService {
 
         if (updateRequest.email() !=null && !updateRequest.email().equals(customer.getEmail())){
 
-            if (customerDAO.existsPersonWithEmail(updateRequest.email())){
+            if (customerDAO.existsCustomerWithEmail(updateRequest.email())){
 
                 throw new DuplicateResourceException(
 
