@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "yavaarnosi-api",
+      "image": "yavaar19/yavaarnosi-api:latest",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 8080
+        }
+      ],
+      "environment": [
+        {
+          "name": "SPRING_DATASOURCE_URL",
+          "value": "jdbc:postgresql://awseb-e-dj8bdnpfnq-stack-awsebrdsdatabase-hszsmh7mvcrw.cnv2rtg0j3ss.us-east-2.rds.amazonaws.com:5432/customer"
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,19 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+  yavaarnosi-api:
+    container_name: yavaarnosi-api
+    image: yavaar19/yavaarnosi-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customer
+    ports:
+      - "8088:8080"
+    networks:
+      - postgres
+    depends_on:
+      - db
+    restart: unless-stopped
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4

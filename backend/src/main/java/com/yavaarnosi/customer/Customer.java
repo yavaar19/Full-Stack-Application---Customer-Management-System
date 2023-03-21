@@ -1,8 +1,6 @@
 package com.yavaarnosi.customer;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
-import org.springframework.lang.Nullable;
 
 import java.util.Objects;
 

@@ -1,14 +1,19 @@
 package com.yavaarnosi.customer;
 
+import com.yavaarnosi.AbstractTestcontainers;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
-class CustomerJPADataAccessServiceTest {
+class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
 
     private CustomerJPADataAccessService underTest;
     private AutoCloseable autoCloseable;
@@ -55,45 +60,79 @@ class CustomerJPADataAccessServiceTest {
     @Test
     void insertCustomer() {
         // Given
+        Customer customer = new Customer(
+                1,
+                "Ali",
+                "Ali@example.com",
+                20
+
+        );
 
         // When
 
+        underTest.insertCustomer(customer);
+
         // Then
+
+        verify(customerRepository).save(customer);
+
     }
 
     @Test
     void updateCustomer() {
         // Given
+        Customer customer = new Customer(
+                1,
+                "Ali",
+                "ali@example.com",
+                20
+
+        );
 
         // When
+        underTest.updateCustomer(customer);
 
         // Then
+        verify(customerRepository).save(customer);
+
     }
 
     @Test
     void deleteCustomerById() {
-        // Given
+        /// Given
+        int id = 1;
 
         // When
+        underTest.deleteCustomerById(id);
 
         // Then
+        verify(customerRepository).deleteById(id);
+
     }
 
     @Test
     void existsCustomerWithEmail() {
         // Given
+        String email = "foo@example.com";
 
         // When
+        underTest.existsCustomerWithEmail(email);
 
         // Then
+        verify(customerRepository).existsCustomerByEmail(email);
     }
 
     @Test
     void existsCustomerWithId() {
-        // Given
+        /// Given
+        int id = 1;
 
         // When
+        underTest.existsCustomerWithId(id);
 
         // Then
+        verify(customerRepository).existsCustomerById(id);
+
     }
+
 }

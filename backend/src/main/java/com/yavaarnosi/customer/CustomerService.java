@@ -41,7 +41,7 @@ public class CustomerService {
 
         if (customerDAO.existsCustomerWithEmail(email)){
 
-            throw new DuplicateResourceException("Email already exist!");
+            throw new DuplicateResourceException("Email already taken!");
 
         }else {
 
@@ -59,7 +59,7 @@ public class CustomerService {
 
     }
 
-    public void deleteCustomer(Integer id) {
+    public void deleteCustomerById(Integer id) {
 
         if (customerDAO.existsCustomerWithId(id)) {
 
