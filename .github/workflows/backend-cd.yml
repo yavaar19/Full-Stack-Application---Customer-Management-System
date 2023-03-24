@@ -1,6 +1,7 @@
 name: CD - Deploy Backend
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -14,7 +15,7 @@ jobs:
       postgres:
         image: postgres:14.1
         env:
-          POSTGRES_USER: yavaarnosi
+          POSTGRES_USER: yavaar
           POSTGRES_PASSWORD: password
           POSTGRES_DB: customer
         ports:
