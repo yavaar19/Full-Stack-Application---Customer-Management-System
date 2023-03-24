@@ -34,12 +34,9 @@ jobs:
       - uses: actions/checkout@v3
       - name: Deployment started Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-#          curl -X POST -H 'Content-type: application/json'
-#          --data '
-#          {"text":"Deployment started:battery:"}
-#          '
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Deployment started:battery:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -55,20 +52,16 @@ jobs:
         run: echo "BUILD_NUMBER=$(date '+%d.%m.%Y.%H.%M.%S')" >> $GITHUB_OUTPUT
       - name: Building Maven Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-
-      #          curl -X POST -H 'Content-type: application/json'
-#          --data '{"text":"Building Maven:maven:"}'
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Building Maven:maven:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Build Package Push with Maven
         run: mvn -ntp -B verify -D docker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: Image tag with new Build Number Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-
-      #          curl -X POST -H 'Content-type: application/json'
-#          --data '{"text":"Image tag: ${{steps.build-number.outputs.BUILD_NUMBER}} pushed to Docker:docker:"}'
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Image tag: ${{steps.build-number.outputs.BUILD_NUMBER}} pushed to Docker:docker:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Update Dockerrun.aws.json api image tag with new build number
         run: |
           echo "Dockerrun.aws.json before updating tag"
@@ -78,11 +71,9 @@ jobs:
           cat Dockerrun.aws.json
       - name: Starting Deployment to EB Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-
-      #          curl -X POST -H 'Content-type: application/json'
-#          --data '{"text":"Starting Deployment to Elastic Beanstalk:aws:"}'
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Starting Deployment to Elastic Beanstalk:aws:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v21
         with:
@@ -96,11 +87,9 @@ jobs:
           deployment_package: backend/Dockerrun.aws.json
       - name: Committing to Github repo Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-
-      #          curl -X POST -H 'Content-type: application/json'
-#          --data '{"text":"Committing to Github repo:github:"}'
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Committing to Github repo:github:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Commit and push Dockerrun.aws.json
         run: |
           git config user.name github-actions
@@ -110,7 +99,6 @@ jobs:
           git push
       - name: Deployment completed Slack Message
         run: >
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-#          curl -X POST -H 'Content-type: application/json'
-#          --data '{"text":"Deployment completed:check1:"}'
-#          https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":"Deployment completed:check1:"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
