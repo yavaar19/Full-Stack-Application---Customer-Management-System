@@ -31,12 +31,14 @@ jobs:
         working-directory: ./backend
 
     steps:
+      - uses: actions/checkout@v3
       - name: Deployment started Slack Message
         run: >
           curl && curl -X POST -H 'Content-type: application/json'
-          --data '{"text":"Deployment started:battery:"}'
+          --data '
+          {"text":"Deployment started:battery:"}
+          '
           ${{ secrets.SLACK_WEBHOOK_URL }}
-      - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
