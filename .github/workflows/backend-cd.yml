@@ -34,11 +34,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Deployment started Slack Message
         run: >
-          curl && curl -X POST -H 'Content-type: application/json'
-          --data '
-          {"text":"Deployment started:battery:"}
-          '
-          ${{ secrets.SLACK_WEBHOOK_URL }}
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
