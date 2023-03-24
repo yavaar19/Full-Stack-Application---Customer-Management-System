@@ -1,6 +1,5 @@
 name: CD - Deploy Backend
 
-
 on:
   workflow_dispatch:
   push:
@@ -16,7 +15,7 @@ jobs:
       postgres:
         image: postgres:14.1
         env:
-          POSTGRES_USER: amigoscode
+          POSTGRES_USER: yavaarnosi
           POSTGRES_PASSWORD: password
           POSTGRES_DB: customer
         ports:
@@ -51,7 +50,7 @@ jobs:
         run: |
           echo "Dockerrun.aws.json before updating tag"
           cat Dockerrun.aws.json
-          sed -i -E 's_(amigoscode/amigoscode-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' Dockerrun.aws.json
+          sed -i -E 's_(yavaar19/yavaarnosi-api:)([^"]*)_\1'${{steps.build-number.outputs.BUILD_NUMBER}}'_' Dockerrun.aws.json
           echo "Dockerrun.aws.json after updating tag"
           cat Dockerrun.aws.json
       - name: Deploy to Elastic Beanstalk
