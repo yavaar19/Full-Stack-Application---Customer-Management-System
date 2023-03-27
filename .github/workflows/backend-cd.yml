@@ -1,6 +1,5 @@
 name: CD - Deploy Backend
 
-
 on:
   workflow_dispatch:
   push:
@@ -35,7 +34,7 @@ jobs:
       - name: Slack commit message and sha
         run: >
           curl -X POST -H 'Content-type: application/json'
-          --data '{"text":":github: https://github.com/yavaar19/Full-Stack-Application---Customer-Management-System/commits/${{ gihub.sha }} - ${{ github.event.head_commit.message }}"}'
+          --data '{"text":":github: https://github.com/yavaar19/Full-Stack-Application---Customer-Management-System/commits/${{ github.sha }} - ${{ github.event.head_commit.message }}"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Deployment started Slack Message
         run: >
