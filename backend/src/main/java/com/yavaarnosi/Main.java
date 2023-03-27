@@ -22,6 +22,7 @@ public class Main {
 
             var faker = new Faker();
             var name = faker.name();
+
             Random random = new Random();
             String firstName = name.firstName();
             String lastName = name.lastName();
