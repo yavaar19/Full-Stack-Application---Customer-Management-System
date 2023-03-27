@@ -32,6 +32,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: Slack commit message and sha
+        run: >
+          curl -X POST -H 'Content-type: application/json'
+          --data '{"text":":github: https://github.com/yavaar19/Full-Stack-Application---Customer-Management-System/commits/${{ gihub.sha }} - ${{ github.event.head_commit.message }}"}'
+          ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Deployment started Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json'
