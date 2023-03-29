@@ -15,5 +15,4 @@ public interface CustomerDAO {
     boolean existsCustomerWithId(Integer id);
 
 
-
 }
