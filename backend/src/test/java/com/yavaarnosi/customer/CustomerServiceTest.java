@@ -46,9 +46,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19
+                id, "alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         Mockito.when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -83,7 +83,7 @@ class CustomerServiceTest {
         when(customerDAO.existsCustomerWithEmail(email)).thenReturn(false);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                "alex", email, 19
+                "alex", email, 19, Gender.MALE
 
         );
 
@@ -112,7 +112,7 @@ class CustomerServiceTest {
         when(customerDAO.existsCustomerWithEmail(email)).thenReturn(true);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                "Alex", email, 19
+                "Alex", email, 19, Gender.MALE
 
         );
 
@@ -164,9 +164,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "Alex", "alex@example.com", 19
+                id, "Alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -204,9 +204,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19
+                id, "alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         Mockito.when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -236,9 +236,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19
+                id, "alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         Mockito.when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -272,9 +272,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19
+                id, "alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -304,9 +304,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19
+                id, "alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         Mockito.when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
@@ -335,9 +335,9 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "Alex", "alex@example.com", 19
+                id, "Alex", "alex@example.com", 19,
 
-        );
+                Gender.MALE);
 
         when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 

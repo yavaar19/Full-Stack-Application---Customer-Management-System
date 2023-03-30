@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Optional;
-import java.util.UUID;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
@@ -64,9 +61,9 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Ali",
                 "Ali@example.com",
-                20
+                20,
 
-        );
+                Gender.MALE);
 
         // When
 
@@ -85,9 +82,9 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Ali",
                 "ali@example.com",
-                20
+                20,
 
-        );
+                Gender.MALE);
 
         // When
         underTest.updateCustomer(customer);

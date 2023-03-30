@@ -5,6 +5,7 @@ import com.github.javafaker.Name;
 import com.yavaarnosi.customer.Customer;
 import com.yavaarnosi.customer.CustomerRegistrationRequest;
 import com.yavaarnosi.customer.CustomerUpdateRequest;
+import com.yavaarnosi.customer.Gender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -38,12 +39,14 @@ public class CustomerIT {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@example.com";
         int age = RANDOM.nextInt(1, 100);
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
 
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
 
                 name,
                 email,
-                age
+                age,
+                gender
 
         );
 
@@ -72,9 +75,9 @@ public class CustomerIT {
         // Make sure that customer is present
         Customer expectedCustomer = new Customer(
 
-                name, email, age
+                name, email, age, gender
 
-        );
+                );
 
         assertThat(allCustomers).usingRecursiveFieldByFieldElementComparatorIgnoringFields("id")
                 .contains(expectedCustomer);
@@ -109,12 +112,14 @@ public class CustomerIT {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@example.com";
         int age = RANDOM.nextInt(1, 100);
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
 
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
 
                 name,
                 email,
-                age
+                age,
+                gender
 
         );
 
@@ -172,12 +177,14 @@ public class CustomerIT {
         String name = fakerName.fullName();
         String email = fakerName.lastName() + "-" + UUID.randomUUID() + "@example.com";
         int age = RANDOM.nextInt(1, 100);
+        Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
 
         CustomerRegistrationRequest customerRegistrationRequest = new CustomerRegistrationRequest(
 
                 name,
                 email,
-                age
+                age,
+                gender
 
         );
 
@@ -241,9 +248,9 @@ public class CustomerIT {
 
         Customer expectedCustomer = new Customer(
 
-                id, newName, email, age
+                id, newName, email, age, gender
 
-        );
+                );
 
         assertThat(updatedCustomer).isEqualTo(expectedCustomer);
 

@@ -3,6 +3,7 @@ package com.yavaarnosi;
 import com.github.javafaker.Faker;
 import com.yavaarnosi.customer.Customer;
 import com.yavaarnosi.customer.CustomerRepository;
+import com.yavaarnosi.customer.Gender;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,8 +26,10 @@ public class Main {
             Random random = new Random();
             String firstName = name.firstName();
             String lastName = name.lastName();
+            int age = random.nextInt(16, 99);
+            Gender gender = age % 2 == 0 ? Gender.MALE : Gender.FEMALE;
 
-            Customer customer = new Customer( firstName + " " + lastName, firstName.toLowerCase() + "." + lastName.toLowerCase() + "@example.com", random.nextInt(16, 99));
+            Customer customer = new Customer( firstName + " " + lastName, firstName.toLowerCase() + "." + lastName.toLowerCase() + "@example.com", age, gender);
 
             customerRepository.save(customer);
 
