@@ -73,32 +73,6 @@ export default function CardWithImage({id, name, email, age, gender, imageNumber
                 <Stack m={8}>
 
                     <Button
-                        mt={0}
-                        bg={'red.400'}
-                        color={'white'}
-                        rounded={'full'}
-                        _hover={{
-
-                            transform: 'translateY(-2px)',
-                            boxShadow: 'lg'
-
-                        }}
-
-                        _focus={{
-
-                            bg: 'green.500'
-
-                        }}
-
-                        onClick={onOpen}
-
-                    >
-
-                        Edit
-
-                    </Button>
-
-                    <Button
                         mt={8}
                         bg={'red.400'}
                         color={'white'}
