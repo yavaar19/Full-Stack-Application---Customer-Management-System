@@ -110,6 +110,7 @@
 							<arguments>
 								<argument>--server.port=${tomcat.http.port}</argument>
 							</arguments>
+							<jvmArguments>-Dspring.application.admin.enabled=true</jvmArguments>
 						</configuration>
 					</execution>
 					<execution>
