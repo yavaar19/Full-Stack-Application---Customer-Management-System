@@ -3,7 +3,7 @@ import SidebarWithHeader from "./components/shared/SideBar.jsx";
 import { useEffect, useState } from "react";
 import {getCustomers} from "./services/client.js";
 import CardWithImage from "./components/card.jsx";
-import DrawerForm from "./components/DrawerForm.jsx";
+import CreateCustomerDrawer from "./components/CreateCustomerDrawer.jsx";
 import {errorNotification} from "./services/notification.js";
 
 
@@ -73,7 +73,7 @@ const App = () => {
 
             <SidebarWithHeader>
 
-                <DrawerForm
+                <CreateCustomerDrawer
 
                     fetchCustomers = {fetchCustomers}
 
@@ -93,7 +93,7 @@ const App = () => {
 
             <SidebarWithHeader>
 
-                <DrawerForm
+                <CreateCustomerDrawer
 
                     fetchCustomers = {fetchCustomers}
 
@@ -111,7 +111,7 @@ const App = () => {
 
         <SidebarWithHeader>
 
-            <DrawerForm
+            <CreateCustomerDrawer
 
                 fetchCustomers = {fetchCustomers}
 
