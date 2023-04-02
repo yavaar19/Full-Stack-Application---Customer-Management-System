@@ -7,21 +7,21 @@ services:
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
     volumes:
-      - postgres:/data/postgres
+      - db:/data/postgres
     ports:
       - "5332:5432"
     networks:
-      - postgres
+      - db
     restart: unless-stopped
   yavaarnosi-api:
     container_name: yavaarnosi-api
     image: yavaar19/yavaarnosi-api
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/customer
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
     ports:
       - "8088:8080"
     networks:
-      - postgres
+      - db
     depends_on:
       - db
     restart: unless-stopped
@@ -39,9 +39,8 @@ services:
     restart: unless-stopped
 
 networks:
-  postgres:
+  db:
     driver: bridge
 
 volumes:
-  postgres:
-  pgadmin:
+  db:
