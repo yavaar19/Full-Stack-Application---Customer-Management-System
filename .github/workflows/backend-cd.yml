@@ -60,7 +60,7 @@ jobs:
           --data '{"text":"Building Maven :maven:"}'
           ${{ secrets.SLACK_WEBHOOK_URL }}
       - name: Build Package Push with Maven
-        run: mvn -ntp -B package -D docker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
+        run: mvn -ntp -B verify -D docker.image.tag=${{steps.build-number.outputs.BUILD_NUMBER}} jib:build
       - name: Image tag with new Build Number Slack Message
         run: >
           curl -X POST -H 'Content-type: application/json'
