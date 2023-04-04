@@ -23,29 +23,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Value("#{'${cors.allowed-methods}'.split(',')}")
     private List<String> allowedMethods;
 
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//
-//        CorsRegistration corsRegistration = registry.addMapping("/api/**");
-//
-//        allowedOrigins.forEach(corsRegistration::allowedOrigins);
-//        allowedMethods.forEach(corsRegistration::allowedMethods);
-//
-//    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
 
-    @Bean
-    CorsConfigurationSource CorsConfigurationSource(){
+        CorsRegistration corsRegistration = registry.addMapping("api/**");
 
-        CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(allowedOrigins);
-        configuration.setAllowedMethods(allowedMethods);
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-
-        source.registerCorsConfiguration("/**", configuration);
-
-        return source;
+        allowedOrigins.forEach(corsRegistration::allowedOrigins);
+        allowedMethods.forEach(corsRegistration::allowedMethods);
 
     }
 
