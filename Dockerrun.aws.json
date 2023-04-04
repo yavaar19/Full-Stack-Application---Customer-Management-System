@@ -15,13 +15,13 @@
     },
     {
       "name": "yavaarnosi-api",
-      "image": "yavaar19/yavaarnosi-api:04.04.2023.03.09.05",
+      "image": "yavaar19/yavaarnosi-api:03.04.2023.22.36.18",
       "essential": true,
       "memory": 512,
       "portMappings": [
         {
-          "hostPort": 5000,
-          "containerPort": 5000
+          "hostPort": 8080,
+          "containerPort": 8080
         }
       ],
       "environment": [
