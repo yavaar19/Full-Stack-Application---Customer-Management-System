@@ -33,7 +33,7 @@ services:
       args:
         api_base_url: http://localhost:8080
     ports:
-      - "30:5173"
+      - "80:5173"
     depends_on:
       - yavaarnosi-api
     restart: unless-stopped
