@@ -4,7 +4,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/v1/customers")
 public class CustomerController {
@@ -17,13 +16,11 @@ public class CustomerController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping
     public List<Customer> getCustomers() {
         return customerService.getAllCustomers();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping("{customerid}")
     public Customer getCustomers(@PathVariable("customerid") Integer customerId) {
 
@@ -31,7 +28,6 @@ public class CustomerController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping
     public void registerCustomer(@RequestBody CustomerRegistrationRequest request){
 
@@ -39,7 +35,6 @@ public class CustomerController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping("{customerid}")
     public void deleteCustomer(@PathVariable("customerid") Integer customerId){
 
@@ -47,7 +42,6 @@ public class CustomerController {
 
     }
 
-    @CrossOrigin(origins = "*")
     @PutMapping("{customerid}")
     public void updateCustomer(@RequestBody CustomerUpdateRequest request, @PathVariable("customerid") Integer customerId){
 
