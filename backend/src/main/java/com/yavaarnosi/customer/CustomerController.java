@@ -3,6 +3,8 @@ package com.yavaarnosi.customer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("api/v1/customers")
 public class CustomerController {
@@ -14,11 +16,14 @@ public class CustomerController {
         this.customerService = customerService;
 
     }
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping
     public List<Customer> getCustomers() {
         return customerService.getAllCustomers();
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("{customerid}")
     public Customer getCustomers(@PathVariable("customerid") Integer customerId) {
 
@@ -26,6 +31,7 @@ public class CustomerController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping
     public void registerCustomer(@RequestBody CustomerRegistrationRequest request){
 
@@ -33,6 +39,7 @@ public class CustomerController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping("{customerid}")
     public void deleteCustomer(@PathVariable("customerid") Integer customerId){
 

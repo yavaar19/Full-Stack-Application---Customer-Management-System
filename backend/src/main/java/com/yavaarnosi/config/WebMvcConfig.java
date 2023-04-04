@@ -16,7 +16,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Value("#{'${cors.allowed-origins}'.split(',')}")
     private List<String> allowedOrigins;
 
-    @Value("GET,HEAD,OPTIONS,POST,PUT")
+    @Value("#{'${cors.allowed-methods}'.split(',')}")
     private List<String> allowedMethods;
 
     @Override
