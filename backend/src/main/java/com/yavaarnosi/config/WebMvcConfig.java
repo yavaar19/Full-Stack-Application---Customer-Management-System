@@ -1,7 +1,11 @@
 package com.yavaarnosi.config;
 
+import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,13 +21,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Value("#{'${cors.allowed-methods}'.split(',')}")
     private List<String> allowedMethods;
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//
+//        CorsRegistration corsRegistration = registry.addMapping("api/**");
+//
+//        allowedOrigins.forEach(corsRegistration::allowedOrigins);
+//        allowedMethods.forEach(corsRegistration::allowedMethods);
+//
+//    }
 
-        CorsRegistration corsRegistration = registry.addMapping("api/**");
-
-        allowedOrigins.forEach(corsRegistration::allowedOrigins);
-        allowedMethods.forEach(corsRegistration::allowedMethods);
-
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.addAllowedOrigin("*");
+        config.addAllowedHeader("*");
+        config.addAllowedMethod("*");
+        source.registerCorsConfiguration("/api/**", config);
+        return new CorsFilter();
     }
 }
