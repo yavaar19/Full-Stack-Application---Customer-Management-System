@@ -27,7 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         registry.addMapping("api/**")
                 .allowedMethods("*")
-                .allowedOrigins("http://yavaarnosiapi-env.eba-aj6kw3z3.us-east-2.elasticbeanstalk.com/")
+                .allowedOrigins("*")
                 .allowedHeaders("*");
 //        allowedOrigins.forEach(corsRegistration::allowedOrigins);
 //        allowedMethods.forEach(corsRegistration::allowedMethods);
