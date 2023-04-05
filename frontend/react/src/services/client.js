@@ -4,13 +4,7 @@ export const getCustomers = async () =>{
 
     try {
 
-        return await axios.get(`${ import.meta.env.VITE_API_BASE_URL }/api/v1/customers`, {
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            }
-        })
+        return await axios.get(`${ import.meta.env.VITE_API_BASE_URL }/api/v1/customers`)
 
     }catch (e){
 
@@ -25,13 +19,8 @@ export const saveCustomer = async (customer) => {
     try {
 
         return await axios.post(`${ import.meta.env.VITE_API_BASE_URL }/api/v1/customers`,
-            customer, {
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            }
+            customer
+
             )
 
     } catch (e){
@@ -46,7 +35,7 @@ export const deleteCustomer = async (id) => {
 
     try {
 
-        return await axios.delete(`${ import.meta.env.VITE_API_BASE_URL }/api/v1/customers/${id}`,
+        return await axios.delete(`${ import.meta.env.VITE_API_BASE_URL }/api/v1/customers/${id}`
 
         )
 
@@ -64,6 +53,7 @@ export const updateCustomer = async (id, update) => {
 
         return await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/v1/customers/${id}`,
             update
+
         )
 
     } catch (e) {
