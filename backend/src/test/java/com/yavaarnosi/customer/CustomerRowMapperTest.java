@@ -36,7 +36,7 @@ class CustomerRowMapperTest {
         // Then
         Customer expectedCustomer = new Customer(
 
-                1, "Jamila", "jamila@example.com", 19,
+                1, "Jamila", "jamila@example.com", "password", 19,
 
                 Gender.FEMALE);
 

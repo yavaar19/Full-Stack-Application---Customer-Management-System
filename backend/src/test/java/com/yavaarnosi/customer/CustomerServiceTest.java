@@ -11,6 +11,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -22,11 +23,14 @@ class CustomerServiceTest {
 
     @Mock
     private CustomerDAO customerDAO;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     private CustomerService underTest;
+    private final CustomerDTOMapper customerDTOMapper = new CustomerDTOMapper();
     @BeforeEach
     void setUp() {
 
-        underTest = new CustomerService(customerDAO);
+        underTest = new CustomerService(customerDAO, customerDTOMapper, passwordEncoder);
 
     }
 
@@ -46,17 +50,19 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19,
+                id, "alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
         Mockito.when(customerDAO.selectCustomerById(id)).thenReturn(Optional.of(customer));
 
+        CustomerDTO expected = customerDTOMapper.apply(customer);
+
         // When
-        Customer actual = underTest.getCustomer(id);
+        CustomerDTO actual = underTest.getCustomer(id);
 
         // Then
-        assertThat(actual).isEqualTo(customer);
+        assertThat(actual).isEqualTo(expected);
 
     }
 
@@ -83,9 +89,13 @@ class CustomerServiceTest {
         when(customerDAO.existsCustomerWithEmail(email)).thenReturn(false);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                "alex", email, 19, Gender.MALE
+                "alex", email, "password", 19, Gender.MALE
 
         );
+
+        String passwordHash = "$5554ml;f;lsd";
+
+        when(passwordEncoder.encode(request.password())).thenReturn(passwordHash);
 
         // When
         underTest.addCustomer(request);
@@ -101,6 +111,7 @@ class CustomerServiceTest {
         assertThat(capturedCustomer.getName()).isEqualTo(request.name());
         assertThat(capturedCustomer.getEmail()).isEqualTo(request.email());
         assertThat(capturedCustomer.getAge()).isEqualTo(request.age());
+        assertThat(capturedCustomer.getPassword()).isEqualTo(passwordHash);
 
     }
 
@@ -112,7 +123,7 @@ class CustomerServiceTest {
         when(customerDAO.existsCustomerWithEmail(email)).thenReturn(true);
 
         CustomerRegistrationRequest request = new CustomerRegistrationRequest(
-                "Alex", email, 19, Gender.MALE
+                "Alex", email, "password", 19, Gender.MALE
 
         );
 
@@ -164,7 +175,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "Alex", "alex@example.com", 19,
+                id, "Alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
@@ -204,7 +215,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19,
+                id, "alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
@@ -236,7 +247,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19,
+                id, "alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
@@ -272,7 +283,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19,
+                id, "alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
@@ -304,7 +315,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "alex", "alex@example.com", 19,
+                id, "alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 
@@ -335,7 +346,7 @@ class CustomerServiceTest {
 
         Customer customer = new Customer(
 
-                id, "Alex", "alex@example.com", 19,
+                id, "Alex", "alex@example.com", "password", 19,
 
                 Gender.MALE);
 

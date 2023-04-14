@@ -21,7 +21,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
     public List<Customer> selectAllCustomers() {
 
         var sql = """
-                SELECT id, name, email, age, gender
+                SELECT id, name, email, password, age, gender
                 FROM customer
                 """;
 
@@ -33,7 +33,7 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
     public Optional<Customer> selectCustomerById(Integer id) {
 
         var sql = """
-                SELECT id, name, email, age, gender
+                SELECT id, name, email,password, age, gender
                 FROM customer
                 WHERE id = ?
                 """;
@@ -47,11 +47,11 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
     public void insertCustomer(Customer customer) {
 
         var sql = """
-                INSERT INTO customer(name, email, age, gender)
-                VALUES (?,?,?,?)
+                INSERT INTO customer(name, email, password, age, gender)
+                VALUES (?,?,?,?,?)
                 """;
 
-        jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getAge(), customer.getGender().name());
+        jdbcTemplate.update(sql, customer.getName(), customer.getEmail(), customer.getPassword(), customer.getAge(), customer.getGender().name());
 
     }
 
@@ -133,4 +133,19 @@ public class CustomerJDBCDataAccessService implements CustomerDAO{
         return count != 0 && count > 0;
 
     }
+
+    @Override
+    public Optional<Customer> selectUserByEmail(String email) {
+
+        var sql = """
+                SELECT id, name, email,password, age, gender
+                FROM customer
+                WHERE email = ?
+                """;
+
+        return jdbcTemplate.query(sql, customerRowMapper, email)
+                .stream().findFirst();
+
+    }
+
 }

@@ -61,7 +61,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Ali",
                 "Ali@example.com",
-                20,
+                "password", 20,
 
                 Gender.MALE);
 
@@ -82,7 +82,7 @@ class CustomerJPADataAccessServiceTest extends AbstractTestcontainers {
                 1,
                 "Ali",
                 "ali@example.com",
-                20,
+                "password", 20,
 
                 Gender.MALE);
 
