@@ -15,7 +15,7 @@
     },
     {
       "name": "yavaarnosi-api",
-      "image": "yavaar19/yavaarnosi-api:05.04.2023.14.33.03",
+      "image": "yavaar19/yavaarnosi-api:14.04.2023.05.18.36",
       "essential": true,
       "memory": 512,
       "portMappings": [
