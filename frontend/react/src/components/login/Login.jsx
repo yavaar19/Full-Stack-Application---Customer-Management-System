@@ -85,7 +85,7 @@ const LoginForm = () => {
 
             }}>
 
-            {({isValid, isSubmitting}) => (
+            {({ isValid, isSubmitting }) => (
 
                 <Form>
 
