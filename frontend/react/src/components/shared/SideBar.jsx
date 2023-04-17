@@ -33,11 +33,7 @@ import {
 } from "react-icons/fi"
 import {useAuth} from "../context/AuthContext.jsx";
 const LinkItems = [
-    { name: "Home", icon: FiHome },
-    { name: "Trending", icon: FiTrendingUp },
-    { name: "Explore", icon: FiCompass },
-    { name: "Favourites", icon: FiStar },
-    { name: "Settings", icon: FiSettings }
+    { name: "Home", icon: FiHome }
 ]
 
 export default function SidebarWithHeader({ children }) {
@@ -218,10 +214,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
                             bg={useColorModeValue("white", "gray.900")}
                             borderColor={useColorModeValue("gray.200", "gray.700")}
                         >
-                            <MenuItem>Profile</MenuItem>
-                            <MenuItem>Settings</MenuItem>
-                            <MenuItem>Billing</MenuItem>
-                            <MenuDivider />
                             <MenuItem onClick = { logOut }>
                                 Sign out
                             </MenuItem>
