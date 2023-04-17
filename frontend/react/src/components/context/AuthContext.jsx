@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
     const [customer, setCustomer] = useState(null);
 
-    useEffect(() => {
+    const setCustomerFromToken = () => {
 
         let token = localStorage.getItem("access_token");
 
@@ -32,6 +32,12 @@ const AuthProvider = ({ children }) => {
             })
 
         }
+
+    }
+
+    useEffect(() => {
+
+        setCustomerFromToken();
 
     }, [])
 
@@ -63,7 +69,6 @@ const AuthProvider = ({ children }) => {
         })
 
     }
-
     const logOut = () => {
 
         localStorage.removeItem("access_token");
@@ -102,7 +107,8 @@ const AuthProvider = ({ children }) => {
             customer,
             login,
             logOut,
-            isCustomerAuthenticated
+            isCustomerAuthenticated,
+            setCustomerFromToken
 
         }}>
 
