@@ -15,11 +15,7 @@ import java.util.UUID;
 
 @SpringBootApplication
 public class Main {
-    public static void main(String[] args) {
-
-        SpringApplication.run(Main.class, args);
-
-    }
+    public static void main(String[] args) { SpringApplication.run(Main.class, args); }
     @Bean
     CommandLineRunner runner(CustomerRepository customerRepository, PasswordEncoder passwordEncoder) {
 
