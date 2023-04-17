@@ -3,7 +3,7 @@
   "containerDefinitions": [
     {
       "name": "yavaarnosi-react",
-      "image": "yavaar19/yavaarnosi-react:17.04.2023.05.15.46",
+      "image": "yavaar19/yavaarnosi-react:17.04.2023.05.49.39",
       "essential": true,
       "memory": 256,
       "portMappings": [
